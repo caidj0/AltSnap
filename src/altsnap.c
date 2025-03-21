@@ -63,7 +63,7 @@ static HINSTANCE LoadHooksDLL()
     if(!ret || ret == ARR_SZ(path))
         return NULL;
     PathRemoveFileSpecL(path);
-    lstrcat_s(path, ARR_SZ(path), TEXT("\\hooks.dll"));
+    lstrcat_s(path, ARR_SZ(path), TEXT("\\libhooks.dll"));
     return LoadLibrary(path);
 }
 static void FreeHooksDLL()
@@ -190,6 +190,7 @@ void ShowSClickMenu(HWND hwnd, LPARAM param)
     } mnlst[] = {
        /* hide, action,      MF_FLAG/CHECKED,    menu string */
         { AC_ALWAYSONTOP, CHK(LP_TOPMOST),    l10n->input_actions_alwaysontop },
+        { AC_CLICKTHROUGH, MF_STRING,         l10n->input_actions_clickthrough },
         { AC_BORDERLESS,  CHK(LP_BORDERLESS), l10n->input_actions_borderless },
         { AC_CENTER,      MF_STRING,          l10n->input_actions_center},
         { AC_ROLL,        CHK(LP_ROLLED),     l10n->input_actions_roll},

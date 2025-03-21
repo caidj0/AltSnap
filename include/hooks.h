@@ -77,6 +77,7 @@
     ACVALUE(AC_MAXIMIZE,     "Maximize",    MR) \
     ACVALUE(AC_CENTER,       "Center",      MR) \
     ACVALUE(AC_ALWAYSONTOP,  "AlwaysOnTop", ZO) \
+    ACVALUE(AC_CLICKTHROUGH, "ClickThrough",ZO) \
     ACVALUE(AC_CLOSE,        "Close",       CL) \
     ACVALUE(AC_LOWER,        "Lower",       ZO) \
     ACVALUE(AC_FOCUS,        "Focus",       ZO) \

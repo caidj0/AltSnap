@@ -167,6 +167,7 @@ struct langinfoitem {
   LNGVALUE(input_actions_focusb,   "InputActionFocusB",   TEXT("Focus bottom window")) \
   LNGVALUE(input_actions_roll,     "InputActionRoll",     TEXT("&Roll/Unroll window")) \
   LNGVALUE(input_actions_alwaysontop,  "InputActionAlwaysOnTop",  TEXT("Toggle always on &top")) \
+  LNGVALUE(input_actions_clickthrough,  "InputActionClickThrough",  TEXT("Toggle click through")) \
   LNGVALUE(input_actions_borderless,   "InputActionBorderless",   TEXT("Toggle &borderless")) \
   LNGVALUE(input_actions_center,       "InputActionCenter",       TEXT("C&enter window on screen")) \
   LNGVALUE(input_actions_oriclick,     "InputActionOriClick",     TEXT("Send ori&ginal click")) \
