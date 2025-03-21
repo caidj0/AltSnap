@@ -1,9 +1,9 @@
 #include "resource.h"
 
-APP_ICON ICON "media/icon.ico"
-TRAY_OFF ICON "media/tray-disabled.ico"
-TRAY_ON  ICON "media/tray-enabled.ico"
-TRAY_SUS ICON "media/tray-suspended.ico"
+APP_ICON ICON "icon.ico"
+TRAY_OFF ICON "tray-disabled.ico"
+TRAY_ON  ICON "tray-enabled.ico"
+TRAY_SUS ICON "tray-suspended.ico"
 
 #include "window.rc"
 
