@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.20)
-project(AltSnap VERSION 1.0)
+cmake_minimum_required(VERSION 3.21)
+project(AltSnap VERSION 1.6.4)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -23,6 +23,19 @@ target_compile_options(AltSnap PRIVATE )
 target_include_directories(AltSnap PRIVATE include)
 target_link_options(AltSnap PRIVATE -nostdlib -e unfuckWinMain)
 
-install(TARGETS AltSnap hooks DESTINATION ${CMAKE_BINARY_DIR}/${CMAKE_BUILD_TYPE})
-install(FILES AltSnap.txt AltSnap.xml AltSnap.dni License.txt DESTINATION ${CMAKE_BINARY_DIR}/${CMAKE_BUILD_TYPE})
-install(DIRECTORY Lang DESTINATION ${CMAKE_BINARY_DIR}/${CMAKE_BUILD_TYPE})
+file(CREATE_LINK ${CMAKE_SOURCE_DIR}/Lang
+     ${CMAKE_CURRENT_BINARY_DIR}/Lang
+     SYMBOLIC)
+
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/AltSnap.dni ${CMAKE_CURRENT_BINARY_DIR}/AltSnap.dni ONLY_IF_DIFFERENT)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/AltSnap.txt ${CMAKE_CURRENT_BINARY_DIR}/AltSnap.txt ONLY_IF_DIFFERENT)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/AltSnap.xml ${CMAKE_CURRENT_BINARY_DIR}/AltSnap.xml ONLY_IF_DIFFERENT)
+file(COPY_FILE ${CMAKE_SOURCE_DIR}/License.txt ${CMAKE_CURRENT_BINARY_DIR}/License.txt ONLY_IF_DIFFERENT)
+
+install(TARGETS AltSnap hooks DESTINATION .)
+install(FILES AltSnap.txt AltSnap.xml AltSnap.dni License.txt DESTINATION .)
+install(DIRECTORY Lang DESTINATION .)
+
+set(CPACK_GENERATOR "ZIP")
+
+include(CPack)

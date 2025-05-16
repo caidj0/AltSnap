@@ -190,7 +190,7 @@ void ShowSClickMenu(HWND hwnd, LPARAM param)
     } mnlst[] = {
        /* hide, action,      MF_FLAG/CHECKED,    menu string */
         { AC_ALWAYSONTOP, CHK(LP_TOPMOST),    l10n->InputActionAlwaysOnTop },
-        { AC_CLICKTHROUGH, MF_STRING,         l10n->InputActionClockThrough },
+        { AC_CLICKTHROUGH, MF_STRING,         l10n->InputActionClickThrough },
         { AC_BORDERLESS,  CHK(LP_BORDERLESS), l10n->InputActionBorderless },
         { AC_CENTER,      MF_STRING,          l10n->InputActionCenter},
         { AC_ROLL,        CHK(LP_ROLLED),     l10n->InputActionRoll},

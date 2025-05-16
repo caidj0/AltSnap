@@ -521,24 +521,25 @@ ACMenuItems=-1
 ; If you want only a selection of the menu items, pick them up in the list
 ; below, sum up the associated numbers and assign the value to `ACMenuItems`
 ; 1      Toggle Always on top
-; 2      Toggle Borderless
-; 4      Center window on screen
-; 8      Roll/Unroll window
-; 16     Lower Window
-; 32     Maximize vertically
-; 64     Minimize other windows
-; 128    Snap To side/corner
-; 256    ------------------
-; 512    Maximize window
-; 1024   Minimize window
-; 2048   Close window
-; 4096   ----------------
-; 8192   Kill program
-; 16384  -----------------
-; 32768  Movement disabled
-; 65536  -----------------
-; 131072 Send original click
-; 262144 Nothing
+; 2      Click Through
+; 4      Toggle Borderless
+; 8      Center window on screen
+; 16     Roll/Unroll window
+; 32     Lower Window
+; 64     Maximize vertically
+; 128    Minimize other windows
+; 256    Snap To side/corner
+; 512    ------------------
+; 1024   Maximize window
+; 2048   Minimize window
+; 4096   Close window
+; 8192   ----------------
+; 16384  Kill program
+; 32768  -----------------
+; 65536  Movement disabled
+; 131072 -----------------
+; 262144 Send original click
+; 524288 Nothing
 ; Example: 131072+1+2+8=131083 Nothing+Topmost+Borderless+Roll
 
 MaxKeysNum=0

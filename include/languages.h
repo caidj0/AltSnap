@@ -168,7 +168,7 @@ struct langinfoitem {
   LNGVALUE(InputActionFocusB,   TEXT("Focus bottom window"), NULL) \
   LNGVALUE(InputActionRoll,     TEXT("&Roll/Unroll window"), NULL) \
   LNGVALUE(InputActionAlwaysOnTop,  TEXT("Toggle always on &top"), NULL) \
-  LNGVALUE(InputActionClockThrough, TEXT("Toggle click through"), NULL) \
+  LNGVALUE(InputActionClickThrough, TEXT("Toggle click through"), NULL) \
   LNGVALUE(InputActionBorderless,   TEXT("Toggle &borderless"), NULL) \
   LNGVALUE(InputActionCenter,       TEXT("C&enter window on screen"), NULL) \
   LNGVALUE(InputActionOriClick,     TEXT("Send ori&ginal click"), NULL) \
