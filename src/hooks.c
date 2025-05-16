@@ -2590,6 +2590,7 @@ static void ToggleSnapState(void)
     state.snap = state.snap? 0: 3;
 }
 static void TogglesAlwaysOnTop(HWND hwnd);
+static void ActionClickThrough(HWND hwnd, int toggle);
 static HWND MDIorNOT(HWND hwnd, HWND *mdiclient_);
 ///////////////////////////////////////////////////////////////////////////
 // Keep this one minimalist, it is always on.
@@ -2622,6 +2623,11 @@ __declspec(dllexport) LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wP
         && IsHotkey(vkey)
         && (!conf.MaxKeysNum || TotNumberOfKeysDown() < conf.MaxKeysNum)) {
             //LOGA("\nALT DOWN");
+
+            HWND forehwnd = GetForegroundWindow();
+            if(IsWindow(forehwnd))
+                ActionClickThrough(forehwnd, 0);
+
             state.alt = vkey;
             state.blockaltup = 0;
             state.sclickhwnd = NULL;
@@ -4225,6 +4231,30 @@ static void TogglesAlwaysOnTop(HWND hwnd)
     // Always set foreground #442
     ReallySetForegroundWindow(hwnd);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+static void ActionClickThrough(HWND hwnd, int toggle) {
+    hwnd = GetRootOwner(hwnd);
+
+    LONG_PTR styles = GetWindowLongPtr(hwnd, GWL_EXSTYLE);
+    if (toggle) {
+        LONG_PTR topmost = styles & WS_EX_TOPMOST;
+        if(!topmost) {
+            TogglesAlwaysOnTop(hwnd);
+        }
+
+        BYTE old_opacity = 255;
+        if (styles & WS_EX_LAYERED) {
+            GetLayeredWindowAttributes(hwnd, 0, &old_opacity, NULL);
+        }
+        SetWindowLongPtr(hwnd, GWL_EXSTYLE,
+                         styles | WS_EX_LAYERED | WS_EX_TRANSPARENT);
+        SetLayeredWindowAttributes(hwnd, 0, old_opacity, LWA_ALPHA);
+    } else {
+        if ((styles & WS_EX_LAYERED) && (styles & WS_EX_TRANSPARENT)) 
+            SetWindowLongPtr(hwnd, GWL_EXSTYLE, styles & (~WS_EX_TRANSPARENT));
+    }
+}
 /////////////////////////////////////////////////////////////////////////////
 static void ActionMaximize(HWND hwnd)
 {
@@ -4714,6 +4744,7 @@ static void SClickActions(HWND hwnd, enum action action)
     case AC_MAXIMIZE:    ActionMaximize(hwnd); break;
     case AC_CENTER:      CenterWindow(hwnd, !state.shift /*state.shift? 0: CW_RESTORE*/); break;
     case AC_ALWAYSONTOP: TogglesAlwaysOnTop(hwnd); break;
+    case AC_CLICKTHROUGH: ActionClickThrough(hwnd, 1); break;
     case AC_CLOSE:       PostMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0); break;
     case AC_LOWER:       ActionLower(hwnd, 0, state.shift, state.ctrl); break;
     case AC_FOCUS:       ActionLower(hwnd, +120, state.shift, 1); break;
